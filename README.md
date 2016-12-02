@@ -1,4 +1,6 @@
-SCIP-Scala
+SICPython 
 ==========
 
-Code examples and answers to exercises when I was studying the [Functional Programming Principles in Scala](https://class.coursera.org/progfun-003) course at [Coursera](http://www.coursera.org/).
+SICPython stands for SICP implemented in Python. 
+
+This repo holds Python 3+ implementation of assignments of the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/).
