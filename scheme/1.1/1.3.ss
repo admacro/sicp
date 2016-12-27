@@ -5,5 +5,4 @@
           ((and (> a b) (> c b)) (+ (* a a) (* c c)))
           (else (+ (* b b) (* c c)))))
 
-(print (sum-larger-sqr 1 2 3))
 ; (sum-larger-sqr 9 -6 3)

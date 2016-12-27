@@ -2,6 +2,8 @@
 10
 12
 8
+
+; (/ 6 2)
 3
 6
 
@@ -9,7 +11,7 @@
 ; No output
 3
 
-; (define b 3)
+; (define b (+ a 1))
 ; No output
 4
 
