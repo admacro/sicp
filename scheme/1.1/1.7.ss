@@ -1,3 +1,4 @@
+; E 1.7
 ; Square roots by Newton's Method
 ; Fix failure for very small or very large numbers
 

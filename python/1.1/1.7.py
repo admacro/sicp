@@ -1,5 +1,9 @@
-; Square roots by Newton's Method
-; Fix failure for very small or very large numbers
+'''
+E 1.7
+
+Square roots by Newton's Method
+Fix failure for very small or very large numbers
+'''
 
 (define (sqrt-iter guess x)
     (if (close-enough? guess x)

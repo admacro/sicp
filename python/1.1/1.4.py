@@ -1,11 +1,12 @@
-# E 1.4
-# The operator module exports a set of efficient functions corresponding 
-# to the intrinsic operators of Python, such as add, sub, lt, gt, eq etc.
-# 
-# TODO: explain the execution
-# The lambda expression returns the operator add or sub based on x. 
-# The anonymous function is invoked immediately with b as the parameter. 
-# The anonymous function returns the correct
+'''
+E 1.4
+The operator module exports a set of efficient functions corresponding 
+to the intrinsic operators of Python, such as add, sub, lt, gt, eq etc.
+ 
+The lambda expression returns the operator function add or sub based on x. 
+The anonymous/lambda function is invoked immediately with b as the parameter. An operator function is returned and invoked right after with a 
+and b as the parameter.
+'''
 
 from operator import add, sub
 
