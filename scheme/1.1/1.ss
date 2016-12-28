@@ -4,7 +4,7 @@
 ; Square roots by Newton's method
 
 (define (sqroot x) 
-    (sqrt-iter 1 x))
+    (sqrt-iter 1.0 x))
 
 (define (sqrt-iter guess x)
     (if (good-enough? guess x)
