@@ -1,15 +1,18 @@
+; E 1.8
 ; Cube roots by Newton's Method
 
+(define (cube-root x) 
+    (cube-iter 1.0 x))
+
 (define (cube-iter guess x)
-    (if (good-enough? guess x)
+    (if (close-enough? guess x)
         guess
         (cube-iter (improve guess x) x)))
 
 (define (close-enough? guess x)
-    (< (/ (abs (- (improve guess x) guess)) guess) 0.00001))
+    (< (/ (abs (- guess (improve guess x))) guess) 0.000000001))
 
 (define (improve guess x)
-    (/ (+ (* 2 guess) (/ x (* guess guess))) 3))
+    (/ (+ (/ x (sqr guess)) (* 2 guess)) 3))
 
-(define (good-enough? guess x)
-    (< (abs (- x (* guess guess guess))) 0.0001))
+(define (sqr x) (* x x))

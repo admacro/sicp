@@ -1,15 +1,24 @@
-; Cube roots by Newton's Method
+'''
+E 1.8
+Cube roots by Newton's Method
+'''
 
-(define (cube-iter guess x)
-    (if (good-enough? guess x)
-        guess
-        (cube-iter (improve guess x) x)))
+def cube_root(x): 
+    return cube_iter(1.0, x)
 
-(define (close-enough? guess x)
-    (< (/ (abs (- (improve guess x) guess)) guess) 0.00001))
+def cube_iter(guess, x):
+    return guess if close_enough(guess, x) else cube_iter(improve(guess, x), x)
 
-(define (improve guess x)
-    (/ (+ (* 2 guess) (/ x (* guess guess))) 3))
+def close_enough(guess, x):
+    return abs(guess - (improve(guess, x))) / guess < 0.000000001
 
-(define (good-enough? guess x)
-    (< (abs (- x (* guess guess guess))) 0.0001))
+def improve(guess, x):
+    return (x/sqr(guess) + 2*guess) / 3
+
+def sqr(x): return x * x
+
+# Test
+print(cube_root(512000000000000))
+print(cube_root(512))
+print(cube_root(0.512))
+print(cube_root(0.000000000512))

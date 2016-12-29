@@ -1,75 +1,103 @@
 '''
 Square roots by Newton's Method
-Using new-if
+Using new_if
 '''
 
-(define (new-if predication then-clause else-clause)
-    (cond (predication then-clause)
-             (else else-clause)))
+def new_if(predication, then_clause, else_clause):
+    if (predication): 
+        return then_clause
+    else: 
+        return else_clause
 
-(define (sqrt-iter guess x)
-    (new-if (good-enough? guess x)
-           guess
-           (sqrt-iter (improve guess x) x)))
+def sqroot(x):
+    return sqrt_iter(1.0, x)
 
-(define (improve guess x)
-    (/ (+ guess (/ x guess)) 2))
+def sqrt_iter(guess, x):
+    return new_if(close_enough(guess, x), guess, sqrt_iter(improve(guess, x), x))
 
-(define (good-enough? guess x)
-    (< (abs (- x (* guess guess))) 0.0001))
+def close_enough(guess, x):
+    return abs(guess - improve(guess, x)) / guess < 0.000000001
+
+def improve(guess, x):
+    return avg(guess, x/guess)
+
+def sqr(x): return x * x
+def avg(x, y): return (x + y) / 2
 
 '''
-Scheme uses applicative evaluation order which means
+Output:
+RecursionError: maximum recursion depth exceeded
+'''
+print(sqroot(1024000000000000))
+print(sqroot(1024))
+print(sqroot(0.001024))
+print(sqroot(0.000000001024))
+
+'''
+Python uses applicative evaluation order which means
 funtion parameters will be evaluated before being passed to
 the funtion that's being called.
 
-And function parameters are evaluated from right to left. 
-else-clause is always evaluated first, hence the evaluation never ends.
+And function parameters are evaluated from left to right. 
+else_clause is always evaluated, hence the evaluation never ends.
 
-(new-if (good-enough? guess x) guess (sqrt-iter (improve guess x) x))
-(new-if (good-enough? guess x) 
-        guess 
-        (new-if (good-enough? guess-1 x) 
-                guess-1 
-                (new-if (good-enough? guess-2 x) 
-                        guess-2 
-                        (new-if (good-enough? guess-3 x) 
-                                guess-3 
-                                (sqrt-iter (improve guess-3 x) x)))))
-                                ...
+new_if(close_enough(guess, x), guess, sqrt_iter(improve(guess, x), x))
+new_if(False, guess, new_if(close_enough(guess_1, x), guess_1, sqrt_iter(improve(guess_1, x), x)))
+new_if(False, guess, new_if(False, guess_1, new_if(False, guess_2, sqrt_iter(improve(guess_2, x), x))))
+new_if(False, guess, new_if(False, guess_1, new_if(False, guess_2, new_if(False, guess_3, sqrt_iter(improve(guess_3, x), x))))))
+...
 '''
 
-(define (newer-if pred-1 pred-2 then-clause elseif-clause else-clause)
-    (display "newer-if ")
-    (cond (pred-1 then-clause)
-          (pred-2 elseif-clause)
-          (else else-clause)))
-             
-(define (display-then) 
-    (display "then ")
-    1)
-(define (display-elseif) 
-    (display "elseif ")
-    -1)
-(define (display-else) 
-    (display "else ")
-    0)
-(define (test x) 
-    (display "testing ")
-    x)
 
-(define (test-new-if pred)
-    (new-if (test pred) (display-then) (display-else)))
+def newer_if(pred_1, pred_2, then_clause, elif_cluase, else_clause):
+    print("newer_if")
+    if (pred_1): 
+        return then_clause
+    elif pred_2:
+        return elif_cluase
+    else: 
+        return else_clause
+        
+def print_then(): 
+    print("then") 
+    return 1
     
-(define (test-newer-if pred-1 pred-2)
-    (newer-if (test pred-1) (test pred-2) (display-then) (display-elseif) (display-else)))
+def print_elif(): 
+    print("elif") 
+    return -1
+    
+def print_else(): 
+    print("else") 
+    return 0
+    
+def test(x): 
+    print("testing") 
+    return x
+    
+def test_new_if(pred):
+    return new_if(test(pred), print_then(), print_else())
 
-# output: else then testing 0
-(display (test-new-if #f)) 
-(newline)
+def test_newer_if(pred_1, pred_2):
+    return newer_if(test(pred_1), test(pred_2), print_then(), print_elif(), print_else())
 
-# output: else elseif then testing testing newer-if 1
-(display (test-newer-if #t #f)) 
-(newline)
+'''
+output:
+testing
+then
+else
+0
+'''
+print(test_new_if(False))
 
+'''
+output:
+testing
+testing
+then
+elif
+else
+newer_if
+1
+'''
+print(test_newer_if(True, False))
 
