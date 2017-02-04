@@ -1,5 +1,5 @@
 ; E 1.10
-; Iterative and recursive
+; Linear recursion and iteration
 
 ; Ackermann's function
 (define (A x y)

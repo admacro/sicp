@@ -1,5 +1,5 @@
 ; E 1.9
-; Iterative and recursive
+; Linear recursion and iteration
 
 ; Recursive process
 (define (factorial-recur n) 
