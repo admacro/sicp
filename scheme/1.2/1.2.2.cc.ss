@@ -27,6 +27,8 @@
 	(cc 100 5))
 	
 ; Iterative
+; Use memoization strategy.
+; Ref: https://en.wikipedia.org/wiki/Dynamic_programming
 (define (cc-iter amount)
 	(define (iter amount kinds )
 		(cond ()
