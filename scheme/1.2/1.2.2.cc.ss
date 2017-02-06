@@ -16,7 +16,9 @@
 	(define (cc amount kinds)
 		;;; You can find cc(-5 3) in the output which is the only case that 
 		;;; has a negative value for amount
-		; (display "cc(") (display amount) (display " ") (display kinds) (display ")") 
+		; (display "cc(") 
+		; (display amount) (display " ") 
+		; (display kinds) (display ")") 
 		; (if (< amount 0) (display "<-"))
 		; (newline)
 		(cond ((= amount 0) 1)
@@ -27,13 +29,11 @@
 	(cc 100 5))
 	
 ; Iterative
-; Use memoization strategy.
+; Use memoization strategy. (See ex. 3.2.7 for details)
 ; Ref: https://en.wikipedia.org/wiki/Dynamic_programming
 (define (cc-iter amount)
-	(define (iter amount kinds )
-		(cond ()
-			  ()
-		  	  (else ())))
+    ; TODO: implement this procedure 
+    )
 
 	
 ;;; Here we are thinking of the coins as arranged in order from 
@@ -46,3 +46,4 @@
 		  ((= kinds 3) 10)
 		  ((= kinds 4) 25)
 		  ((= kinds 5) 50)))
+		  
